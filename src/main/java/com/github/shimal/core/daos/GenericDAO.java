@@ -1,5 +1,5 @@
 
-package com.github.shimal.app.daos;
+package com.github.shimal.core.daos;
 
 import java.io.Serializable;
 import java.util.List;

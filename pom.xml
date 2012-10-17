@@ -6,7 +6,7 @@
   <artifactId>shimal-core</artifactId>
   <name>shimal-core</name>
   <modelVersion>4.0.0</modelVersion>
-  <version>1.18</version>
+  <version>1.19</version>
   <packaging>jar</packaging>
 
   <properties>

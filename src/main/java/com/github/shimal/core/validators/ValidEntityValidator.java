@@ -2,8 +2,8 @@
 package com.github.shimal.core.validators;
 
 
-import com.github.shimal.app.daos.GenericDAO;
 import com.github.shimal.core.constraints.ValidEntity;
+import com.github.shimal.core.daos.GenericDAO;
 import java.io.Serializable;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
