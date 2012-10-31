@@ -1,7 +1,7 @@
 
 package com.github.shimal.core.services;
 
-import com.github.shimal.core.daos.GenericDAO;
+import com.github.shimal.commons.dao.GenericDAO;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
