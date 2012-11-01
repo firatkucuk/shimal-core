@@ -3,8 +3,8 @@ package com.github.shimal.core;
 
 
 import com.github.shimal.core.annotations.FieldMap;
-import com.github.shimal.query_utils.hql.HqlConstrainable;
-import com.github.shimal.query_utils.hql.HqlQuery;
+import com.github.shimal.query_utils.Constrainable;
+import com.github.shimal.query_utils.Querable;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -26,14 +26,14 @@ public class ListAdapter {
 
     private Class                clazz;
     private Map<String, Mapping> mappings;
-    private HqlQuery             query;
+    private Querable             query;
     private WebRequest           request;
 
 
 
     //~ --- [CONSTRUCTORS] ---------------------------------------------------------------------------------------------
 
-    public ListAdapter(Class clazz, HqlQuery query, WebRequest request) {
+    public ListAdapter(Class clazz, Querable query, WebRequest request) {
 
         this.clazz    = clazz;
         this.query    = query;
@@ -53,7 +53,7 @@ public class ListAdapter {
 
         if (term != null && !term.isEmpty()) {
 
-            List<HqlConstrainable> constraintList = new ArrayList<HqlConstrainable>();
+            List<Constrainable> constraintList = new ArrayList<Constrainable>();
 
             for (String fieldName : mappings.keySet()) {
                 Mapping mapping = mappings.get(fieldName);
@@ -77,7 +77,7 @@ public class ListAdapter {
                 }
             }
 
-            HqlConstrainable[] constraints = new HqlConstrainable[constraintList.size()];
+            Constrainable[] constraints = new Constrainable[constraintList.size()];
 
             constraintList.toArray(constraints);
             query.where(or(constraints));
@@ -97,7 +97,7 @@ public class ListAdapter {
         if (paramSortedColum != null && !paramSortedColum.isEmpty()) {
 
             Integer sortedColumn       = 0;
-            Integer sortDirection      = HqlQuery.ORDER_ASCENDING;
+            Integer sortDirection      = Querable.ORDER_ASCENDING;
             String  paramSortDirection = request.getParameter("sSortDir_0");
 
             try {
@@ -109,7 +109,7 @@ public class ListAdapter {
             if (paramSortDirection != null && !paramSortDirection.isEmpty()) {
 
                 if (paramSortDirection.equals("desc")) {
-                    sortDirection = HqlQuery.ORDER_DESCENDING;
+                    sortDirection = Querable.ORDER_DESCENDING;
                 }
             }
 
@@ -120,7 +120,7 @@ public class ListAdapter {
 
                 if (mapping != null) {
 
-                    if (sortDirection == HqlQuery.ORDER_ASCENDING) {
+                    if (sortDirection == Querable.ORDER_ASCENDING) {
                         query.asc(mapping.fieldMap);
                     } else {
                         query.desc(mapping.fieldMap);
