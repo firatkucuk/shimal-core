@@ -4,9 +4,7 @@ package com.github.shimal.core.services;
 import com.github.shimal.commons.dao.GenericDAO;
 import com.github.shimal.core.utils.QueryPaginator;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,10 +26,7 @@ public class BaseService {
     //~ --- [METHODS] --------------------------------------------------------------------------------------------------
 
     @Transactional
-    public <T> List<T> paginate(Class<T> cl, String query, Map<String, Object> params) {
-
-        Integer pageStart  = (Integer) params.get("iDisplayStart");
-        Integer pageLength = (Integer) params.get("iDisplayLength");
+    public <T> List<T> paginate(Class<T> cl, String query, int pageStart, int pageLength) {
 
         return dao.select(cl, query, pageStart, pageLength);
     }
@@ -41,13 +36,9 @@ public class BaseService {
     //~ ----------------------------------------------------------------------------------------------------------------
 
     @Transactional
-    public <T> List<T> paginate(RowMapper<T> mapper, String query, Map<String, Object> params,
-        QueryPaginator queryPaginator) {
+    public <T> List<T> paginate(RowMapper<T> mapper, String query, QueryPaginator queryPaginator, int pageStart,
+        int pageLength) {
 
-        Integer      pageStart  = (Integer) params.get("iDisplayStart");
-        Integer      pageLength = (Integer) params.get("iDisplayLength");
-        JdbcTemplate jdbcDao    = dao.newJdbcTemplate();
-
-        return jdbcDao.query(queryPaginator.transformSql(query, pageStart, pageLength), mapper);
+        return dao.newJdbcTemplate().query(queryPaginator.transformSql(query, pageStart, pageLength), mapper);
     }
 }
