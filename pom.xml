@@ -6,7 +6,7 @@
   <artifactId>shimal-core</artifactId>
   <name>shimal-core</name>
   <modelVersion>4.0.0</modelVersion>
-  <version>1.24</version>
+  <version>1.25</version>
   <packaging>jar</packaging>
 
   <properties>
@@ -35,7 +35,7 @@
     <dependency>
       <groupId>com.github.shimal</groupId>
       <artifactId>shimal-query-utils</artifactId>
-      <version>1.8</version>
+      <version>1.9</version>
     </dependency>
 
     <dependency>
