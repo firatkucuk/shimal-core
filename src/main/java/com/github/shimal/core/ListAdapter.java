@@ -69,11 +69,11 @@ public class ListAdapter {
                 isNumber = isNumber || Number.class.isAssignableFrom(mapping.returnType);
 
                 if (isNumber) {
-                    constraintList.add(like("str(" + mapping.fieldMap + ")", "%" + term + "%"));
+                    constraintList.add(like("str(" + mapping.fieldMap + ")", "'%" + term + "%'"));
                 } else if (mapping.returnType.equals(String.class)) {
-                    constraintList.add(like(mapping.fieldMap, "%" + term + "%"));
+                    constraintList.add(like(mapping.fieldMap, "'%" + term + "%'"));
                 } else if (mapping.returnType.equals(Anchor.class)) {
-                    constraintList.add(like(mapping.fieldMap, "%" + term + "%"));
+                    constraintList.add(like(mapping.fieldMap, "'%" + term + "%'"));
                 }
             }
 
